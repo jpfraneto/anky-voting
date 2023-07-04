@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/api/characters', async (req, res) => {
   try {
     const characters = await prisma.character.findMany({
-      where: { voted: 0 },
+      where: { voted: 0, world: 8 },
       include: { images: true },
       take: 10,
     });

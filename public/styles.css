@@ -23,6 +23,8 @@ body {
 #character-container img {
   object-fit: cover;
   transition: all 0.5s; /* animation */
+  width: 100%; /* set width to 100% */
+  margin-bottom: 10px; /* provide some margin at the bottom */
 }
 
 #character-container img.selected {
@@ -49,7 +51,23 @@ body {
   font-size: 1.2rem;
 }
 
+#vote-button:hover {
+  opacity: 80%;
+}
+
 #vote-button:active {
   translate: 2px 2px;
   opacity: 80%;
+}
+
+/* Define styles for screens wider than 768px */
+@media (min-width: 768px) {
+  #character-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  #character-container img {
+    width: 46%; /* change the width back to 46% */
+  }
 }

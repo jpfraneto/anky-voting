@@ -1,3 +1,5 @@
+import('dotenv').then(dotenv => dotenv.config());
+
 import express from 'express';
 import { backupCreator } from './lib/backuper.js';
 import { imageUploader } from './lib/uploadToCloudinary.js';
@@ -24,7 +26,7 @@ async function main() {
 
 app.get('/', async (req, res) => {
   const characters = await prisma.character.findMany({
-    where: { voted: 0 },
+    where: { world: 8, voted: 0 },
     include: { images: true },
     take: 10,
   });

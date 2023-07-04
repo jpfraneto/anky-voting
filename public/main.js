@@ -20,8 +20,6 @@ function showNextCharacter() {
   character.images.forEach((image, index) => {
     const imgElement = document.createElement('img');
 
-    imgElement.style.width = '46%';
-    imgElement.style.height = '46%';
     imgElement.style.backgroundColor = '#000000'; // black placeholder
     imgElement.onload = function () {
       // when image is loaded, remove placeholder
