@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Character {
+  id                      String    @id @default(cuid())
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt @default(now())
+  name                    String?
+  description             String?
+  tokenId                 Int?
+  attributes              Json?
+  upscaledImageUrls       String[] // store as JSON string
+  cloudinaryLinks         String[]
+  chosenImageUrl          String?
+  world                   Int
+  readyToMint             Boolean   @default(false)
+  addedToIPFS             Boolean   @default(false)
+  uploadedImageToIPFS     Boolean   @default(false)
+  imageCID                String?
+  uploadedJSONToIPFS      Boolean   @default(false)
+  jsonCID                 String?
+  images                  Image[]
+  voted                   Int     @default(0)
+}
+
+model Image {
+  id                    String    @id @default(cuid())
+  cloudinaryLink        String?
+  characterId           String
+  character             Character @relation(fields: [characterId], references: [id])
+  imageUrl              String
+  votes                 Int       @default(0)
+}
