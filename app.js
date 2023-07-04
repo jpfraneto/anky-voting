@@ -14,6 +14,13 @@ app.use(express.static('public'));
 
 // backupCreator();
 // imageUploader(8);
+main();
+
+async function main() {
+  console.log('inside the main function');
+  const characters = await prisma.character.count({ where: { voted: 1 } });
+  console.log('here', characters);
+}
 
 app.get('/', async (req, res) => {
   const characters = await prisma.character.findMany({

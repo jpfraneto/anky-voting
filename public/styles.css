@@ -2,7 +2,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  background-color: black;
+  font-family: 'Righteous', cursive;
+}
+
+#title {
+  font-size: 3em;
+  color: #8b19e8;
+  margin-bottom: 8px;
 }
 
 #character-container {
@@ -15,21 +22,34 @@ body {
 
 #character-container img {
   object-fit: cover;
+  transition: all 0.5s; /* animation */
+}
+
+#character-container img.selected {
+  border: 3px solid green;
+  transform: scale(1.1); /* make the selected image larger */
 }
 
 #vote-button {
-  width: 80%;
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #008cba;
-  color: white;
-  border: none;
+  padding: 3px 40px;
+  margin-top: 40px;
+  border-radius: 50px;
+  background-color: #8b19e8;
+  color: black;
+  border: black solid 1px;
   text-align: center;
   text-decoration: none;
+  font-family: 'Righteous', cursive;
   display: none;
-  font-size: 16px;
+  font-size: 2.5rem;
 }
 
-#vote-button:hover {
-  background-color: #007b9a;
+#choose-image {
+  color: white;
+  font-size: 1.2rem;
+}
+
+#vote-button:active {
+  translate: 2px 2px;
+  opacity: 80%;
 }

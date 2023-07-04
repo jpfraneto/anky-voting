@@ -19,10 +19,26 @@ function showNextCharacter() {
 
   character.images.forEach((image, index) => {
     const imgElement = document.createElement('img');
+
+    imgElement.style.width = '46%';
+    imgElement.style.height = '46%';
+    imgElement.style.backgroundColor = '#000000'; // black placeholder
+    imgElement.onload = function () {
+      // when image is loaded, remove placeholder
+      this.style.backgroundColor = '';
+    };
     imgElement.src = image.cloudinaryLink;
-    imgElement.style.width = '50%';
-    imgElement.style.height = '50%';
+
     imgElement.onclick = () => {
+      // clear previous selection
+      const selectedImage = document.querySelector('.selected');
+      if (selectedImage) {
+        selectedImage.classList.remove('selected');
+      }
+
+      // select new image
+      imgElement.classList.add('selected');
+
       selectedImageId = image.id;
       document.getElementById('vote-button').style.display = 'block';
     };
