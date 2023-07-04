@@ -53,6 +53,7 @@ body {
 
 #vote-button:hover {
   opacity: 80%;
+  cursor: pointer;
 }
 
 #vote-button:active {
@@ -60,8 +61,12 @@ body {
   opacity: 80%;
 }
 
+#character-container img {
+  width: 23%; /* change the width back to 46% */
+}
+
 /* Define styles for screens wider than 768px */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   #character-container {
     flex-direction: row;
     align-items: flex-start;
