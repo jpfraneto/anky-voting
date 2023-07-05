@@ -8,7 +8,7 @@ import { prisma } from './lib/prismaClient.js';
 import routes from './routes.js';
 
 const app = express();
-const port = 3008;
+const port = 3000;
 
 app.use(express.json());
 app.use(routes);
