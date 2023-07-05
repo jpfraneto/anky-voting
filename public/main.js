@@ -60,10 +60,15 @@ async function voteForImage() {
   const updatedImage = await response.json();
   console.log('Voted for image: ', updatedImage);
 
+  // Remove the current character from the array
+  characters.splice(currentCharacterIndex, 1);
+
+  // If the array is getting short, fetch more characters
   if (characters.length - currentCharacterIndex <= 5) {
     await fetchCharacters();
   }
 
+  // As we have removed the current character, don't increment the index
   showNextCharacter();
 }
 

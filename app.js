@@ -16,12 +16,18 @@ app.use(express.static('public'));
 
 // backupCreator();
 // imageUploader(8);
-// main();
+main();
 
 async function main() {
   console.log('inside the main function');
-  const characters = await prisma.character.findMany({ where: { voted: 1 } });
-  console.log('here', characters[0]);
+  const characters = await prisma.character.findMany({
+    where: { world: 8 },
+    include: { images: true },
+  });
+  console.log(`There are ${characters.length} characters in the 8 world.`);
+  const votedCharacters = characters.filter(x => x.voted === 1);
+  console.log(`Out of these, ${votedCharacters.length} have been voted.`);
+  console.log(votedCharacters[0]);
 }
 
 app.get('/', async (req, res) => {
