@@ -8,7 +8,7 @@ import { prisma } from './lib/prismaClient.js';
 import routes from './routes.js';
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(express.json());
 app.use(routes);
@@ -16,20 +16,21 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 // backupCreator();
-// imageUploader(7);
+// imageUploader(6);
 // main();
 // processVotedCharacters();
 
-// async function main() {
-//   console.log('inside the main function');
-//   const characters = await prisma.character.findMany({
-//     where: { world: 7 },
-//   });
-//   console.log(`There are ${characters.length} characters in the 8 world.`);
-//   const votedCharacters = characters.filter(x => x.voted === 1);
-//   console.log(`Out of these, ${votedCharacters.length} have been voted.`);
-//   console.log(votedCharacters[0]);
-// }
+async function main() {
+  console.log('inside the main function');
+  const characters = await prisma.character.findMany({
+    where: { world: 6 },
+  });
+  console.log(`There are ${characters.length} characters in the 6 world.`);
+  const notVotedCharacters = characters.filter(x => x.voted === 0);
+  console.log(
+    `Out of these, ${notVotedCharacters.length} have not been voted.`
+  );
+}
 
 function checkForTie(character) {
   let votesForOne = 0;
@@ -47,7 +48,7 @@ function checkForTie(character) {
 
 app.get('/', async (req, res) => {
   let characters = await prisma.character.findMany({
-    where: { world: 7, voted: 0 },
+    where: { world: 6, voted: 0 },
     include: { images: true },
     take: 10,
   });

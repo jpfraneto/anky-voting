@@ -21,7 +21,7 @@ function checkForTie(character) {
 router.get('/api/characters', async (req, res) => {
   try {
     let characters = await prisma.character.findMany({
-      where: { world: 7, voted: 0 },
+      where: { world: 6, voted: 0 },
       include: { images: true },
       take: 10,
     });
